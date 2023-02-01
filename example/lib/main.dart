@@ -73,6 +73,8 @@ class _PinputExampleState extends State<PinputExample> {
             // Specify direction if desired
             textDirection: TextDirection.ltr,
             child: Pinput(
+              showCursor: true,
+              closeKeyboardWhenCompleted: false,
               controller: pinController,
               focusNode: focusNode,
               androidSmsAutofillMethod:
@@ -93,16 +95,11 @@ class _PinputExampleState extends State<PinputExample> {
               onChanged: (value) {
                 debugPrint('onChanged: $value');
               },
-              cursor: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 9),
-                    width: 22,
-                    height: 1,
-                    color: focusedBorderColor,
-                  ),
-                ],
+              cursor: Container(
+                margin: const EdgeInsets.only(left: 10),
+                width: 2,
+                height: 22,
+                color: focusedBorderColor,
               ),
               focusedPinTheme: defaultPinTheme.copyWith(
                 decoration: defaultPinTheme.decoration!.copyWith(

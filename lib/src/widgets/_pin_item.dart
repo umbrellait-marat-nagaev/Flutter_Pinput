@@ -47,7 +47,9 @@ class _PinItem extends StatelessWidget {
     /// Focused pin or default
     if (state.hasFocus &&
         index == state.selectedIndex.clamp(0, state.widget.length - 1)) {
-      return _pinThemeOrDefault(state.widget.focusedPinTheme);
+      return state.widget.length == state.selectedIndex
+          ? state.widget.submittedPinTheme!
+          : _pinThemeOrDefault(state.widget.focusedPinTheme);
     }
 
     /// Submitted pin or default
@@ -74,12 +76,29 @@ class _PinItem extends StatelessWidget {
       if (state.widget.obscureText && state.widget.obscuringWidget != null) {
         return SizedBox(key: key, child: state.widget.obscuringWidget);
       }
-
-      return Text(
-        state.widget.obscureText ? state.widget.obscuringCharacter : pin[index],
-        key: key,
-        style: pinTheme.textStyle,
-      );
+      if ((state.widget.length - 1) == index &&
+          state.effectiveFocusNode.hasFocus) {
+        return Stack(
+          children: [
+            Text(
+              state.widget.obscureText
+                  ? state.widget.obscuringCharacter
+                  : pin[index],
+              key: key,
+              style: pinTheme.textStyle,
+            ),
+            _buildCursor(pinTheme),
+          ],
+        );
+      } else {
+        return Text(
+          state.widget.obscureText
+              ? state.widget.obscuringCharacter
+              : pin[index],
+          key: key,
+          style: pinTheme.textStyle,
+        );
+      }
     }
 
     final isActiveField = index == pin.length;
