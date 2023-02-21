@@ -52,7 +52,7 @@ class _PinItem extends StatelessWidget {
     /// Focused pin or default
     if (state.hasFocus &&
         index == state.selectedIndex.clamp(0, state.widget.length - 1)) {
-      return state.widget.length == state.selectedIndex && hideCursor
+      return state.widget.length == state.selectedIndex
           ? state.widget.submittedPinTheme!
           : _pinThemeOrDefault(state.widget.focusedPinTheme);
     }
@@ -82,8 +82,9 @@ class _PinItem extends StatelessWidget {
         return SizedBox(key: key, child: state.widget.obscuringWidget);
       }
       if ((state.widget.length - 1) == index &&
-          state.effectiveFocusNode.hasFocus && hideCursor) {
+          state.effectiveFocusNode.hasFocus) {
         return Stack(
+          alignment: Alignment.center,
           children: [
             Text(
               state.widget.obscureText
