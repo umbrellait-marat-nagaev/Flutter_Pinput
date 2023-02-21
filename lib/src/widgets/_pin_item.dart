@@ -52,7 +52,7 @@ class _PinItem extends StatelessWidget {
     /// Focused pin or default
     if (state.hasFocus &&
         index == state.selectedIndex.clamp(0, state.widget.length - 1)) {
-      return state.widget.length == state.selectedIndex
+      return state.widget.length == state.selectedIndex && hideCursor
           ? state.widget.submittedPinTheme!
           : _pinThemeOrDefault(state.widget.focusedPinTheme);
     }
