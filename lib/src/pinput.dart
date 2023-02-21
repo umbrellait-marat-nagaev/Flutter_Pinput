@@ -79,6 +79,7 @@ class Pinput extends StatefulWidget {
     this.autofocus = false,
     this.obscureText = false,
     this.showCursor = true,
+    this.hideLastCharacterCursor = true,
     this.isCursorAnimationEnabled = true,
     this.enableSuggestions = true,
     this.hapticFeedbackType = HapticFeedbackType.disabled,
@@ -249,6 +250,9 @@ class Pinput extends StatefulWidget {
   /// Whether show cursor or not
   /// Default cursor '|' or [cursor]
   final bool showCursor;
+
+  /// Whether show cursor on last character input or not
+  final bool hideLastCharacterCursor;
 
   final bool isCursorAnimationEnabled;
 

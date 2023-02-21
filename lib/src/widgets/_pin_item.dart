@@ -3,8 +3,13 @@ part of '../pinput.dart';
 class _PinItem extends StatelessWidget {
   final _PinputState state;
   final int index;
+  final bool hideCursor;
 
-  const _PinItem({required this.state, required this.index});
+  const _PinItem({
+    required this.state,
+    required this.index,
+    required this.hideCursor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +82,7 @@ class _PinItem extends StatelessWidget {
         return SizedBox(key: key, child: state.widget.obscuringWidget);
       }
       if ((state.widget.length - 1) == index &&
-          state.effectiveFocusNode.hasFocus) {
+          state.effectiveFocusNode.hasFocus && hideCursor) {
         return Stack(
           children: [
             Text(
